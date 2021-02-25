@@ -4,33 +4,25 @@
  */
 function trappingRainWater(height) {
     let rainWater = 0;
-    let idxMaxHeight = 0;
-    let maxHeight = 0;
-    for (var i in height) {
-        if (height[i] > maxHeight) {
-            maxHeight = height[i];
-            idxMaxHeight = i;
-        }
-    }
-
-    let localMax = 0;
-    for (let i=0; i<idxMaxHeight; i++) {
-        if (height[i] > localMax) {
-            localMax = height[i];
+    let leftMax = 0, rightMax = 0;
+    let left = 0, right = height.length - 1;
+    while (left < right) {
+        if (height[left] < height[right]) {
+            if (height[left] > leftMax) {
+                leftMax = height[left];
+            } else {
+                rainWater += leftMax - height[left];
+            }
+            left++;
         } else {
-            rainWater += localMax - height[i];
+            if (height[right] > rightMax) {
+                rightMax = height[right];
+            } else {
+                rainWater += rightMax - height[right];
+            }
+            right--;
         }
     }
-
-    localMax = 0;
-    for (let i=height.length-1; i >= idxMaxHeight; i--) {
-        if (height[i] > localMax) {
-            localMax = height[i];
-        } else {
-            rainWater += localMax - height[i];
-        }
-    }
-
     return rainWater;
 };
 
