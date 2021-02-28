@@ -25,5 +25,5 @@ Output: 9
 ###### Constraints:
 
 * `n == height.length`
-* `0 <= n <= 3 * 104`
-* `0 <= height[i] <= 105`
+* `0 <= n <= 3 * 10`<sup>`4`</sup>
+* `0 <= height[i] <= 10`<sup>`5`</sup>
