@@ -1,13 +1,3 @@
-/*
-Idea:
-Use two pointers representing the start and end of the current substring.
-Advance the end pointer, adding characters to a hash while they don't exist and
-keeping track of the substring and its length.
-Once a character repeats, advance the start pointer until it's past the repeated
-character. Keep substring updated and length.
-Update max substring and length found if exceeds previous.
- */
-
 /**
  * @param {string} s
  * @return {number}
