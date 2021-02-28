@@ -2,7 +2,7 @@
   "name": "nodecli1",
   "version": "1.0.0",
   "description": "",
-  "main": "src/addtwo.js",
+  "main": "src/add-two/add-two.js",
   "scripts": {
     "test": "jest"
   },
