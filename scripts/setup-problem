@@ -1,0 +1,17 @@
+#!/bin/sh
+
+problem=$(echo "$1" | sed 's|https://leetcode.com/problems/||' | sed 's|/$||')
+echo "Setting up: $problem"
+
+mkdir "src/$problem"
+echo "From https://leetcode.com/problems/$problem/" > src/$problem/README.md
+echo "" >> src/$problem/README.md
+echo "----" >> src/$problem/README.md
+echo "" >> src/$problem/README.md
+git add src/$problem/README.md
+
+echo "module.exports=TBD;" > src/$problem/$problem.js
+git add src/$problem/$problem.js
+
+echo "const TBD = require('./$problem');" > src/$problem/$problem.test.js
+git add src/$problem/$problem.test.js
