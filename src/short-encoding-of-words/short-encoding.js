@@ -18,6 +18,7 @@ function minimumLengthEncoding(words) {
 
     // DFS the trie and add up depths
     let sum = 0;
+    // Start with a depth of 1 to represent the '#' after encoded segments
     let stack = [[trie, 1]];
     while (stack.length > 0) {
         let so = stack.pop();
