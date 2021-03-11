@@ -28,3 +28,12 @@ test('big input array with lots of duplicates', () => {
     }
     expect(new Set(threeSum(input))).toEqual(new Set([[0,0,0],[-1,0,1]]));
 });
+
+test('more complicated test case', () => {
+    let input = [-1,0,1,2,-1,-4,-2,-3,3,0,4];
+    let expected = [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]];
+    for (let subarray of expected) {
+        subarray.sort();
+    }
+    expect(new Set(threeSum(input))).toEqual(new Set(expected));
+})
