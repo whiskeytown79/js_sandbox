@@ -81,3 +81,83 @@ test('three element doubly-linked list', () => {
     expect(third.prev).toBe(second);
     expect(third.next).toBeNull();
 });
+
+test('single value singly-linked list equality', () => {
+    let v1 = [42];
+    let v2 = [42];
+    let l1 = LinkedList.makeSinglyLinkedList(v1);
+    let l2 = LinkedList.makeSinglyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(true);
+});
+
+test('single value doubly-linked list equality', () => {
+    let v1 = [42];
+    let v2 = [42];
+    let l1 = LinkedList.makeDoublyLinkedList(v1);
+    let l2 = LinkedList.makeDoublyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(true);
+});
+
+test('single value singly-linked list inequality', () => {
+    let v1 = [42];
+    let v2 = [43];
+    let l1 = LinkedList.makeSinglyLinkedList(v1);
+    let l2 = LinkedList.makeSinglyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
+
+test('single value doubly-linked list inequality', () => {
+    let v1 = [42];
+    let v2 = [43];
+    let l1 = LinkedList.makeDoublyLinkedList(v1);
+    let l2 = LinkedList.makeDoublyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
+
+test('multi-value singly-linked list equality', () => {
+    let v1 = [1, 2, 3, 7, 8, 9];
+    let v2 = [1, 2, 3, 7, 8, 9];
+    let l1 = LinkedList.makeSinglyLinkedList(v1);
+    let l2 = LinkedList.makeSinglyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(true);
+});
+
+test('multi-value doubly-linked list equality', () => {
+    let v1 = [1, 2, 3, 7, 8, 9];
+    let v2 = [1, 2, 3, 7, 8, 9];
+    let l1 = LinkedList.makeDoublyLinkedList(v1);
+    let l2 = LinkedList.makeDoublyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(true);
+});
+
+test('multi-value singly-linked list inequality', () => {
+    let v1 = [1, 2, 3, 7, 8, 9];
+    let v2 = [1, 2, 3, 7, 7, 7];
+    let l1 = LinkedList.makeSinglyLinkedList(v1);
+    let l2 = LinkedList.makeSinglyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
+
+test('multi-value doubly-linked list inequality', () => {
+    let v1 = [1, 2, 3, 7, 8, 9];
+    let v2 = [1, 2, 3, 7, 7, 7];
+    let l1 = LinkedList.makeDoublyLinkedList(v1);
+    let l2 = LinkedList.makeDoublyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
+
+test('uneven lengths singly-linked list inequality', () => {
+    let v1 = [1, 2, 3];
+    let v2 = [1, 2, 3, 4];
+    let l1 = LinkedList.makeSinglyLinkedList(v1);
+    let l2 = LinkedList.makeSinglyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
+
+test('uneven lengths doubly-linked list inequality', () => {
+    let v1 = [1, 2, 3];
+    let v2 = [1, 2, 3, 4];
+    let l1 = LinkedList.makeDoublyLinkedList(v1);
+    let l2 = LinkedList.makeDoublyLinkedList(v2);
+    expect(LinkedList.areEqual(l1, l2)).toBe(false);
+});
