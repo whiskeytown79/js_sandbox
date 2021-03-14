@@ -92,11 +92,14 @@ class LinkedList {
 
 expect.extend({
     toEqualList(received, list) {
-        let areEqual = LinkedList.areEqual(received, list);
-        return {
-            pass: areEqual,
-            message: `Expected ${received} to equal ${list}`
+        // Just use Jest's equal matching on the string representation. This
+        // yields a more useful diff output when they don't match.
+        if (this.isNot) {
+            expect(received.toString()).not.toEqual(list.toString());
+        } else {
+            expect(received.toString()).toEqual(list.toString());
         }
+        return { pass: !this.isNot };
     }
 });
 
