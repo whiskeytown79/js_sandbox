@@ -1,3 +1,25 @@
+/**
+ * Converts a list into a string representation.
+ *
+ * @param head the head of the list
+ * @param listType the list type, e.g. "singly-linked"
+ * @param token a token to separate values, e.g. "->" for singly-linked lists
+ * @returns {string}
+ */
+function listToString(head, listType, token) {
+    if (head === null) {
+        return `(null ${listType} list)`
+    }
+    let output = `${listType} list ( ${head.val}`;
+    head = head.next;
+    while (head) {
+        output += ` ${token} ${head.val}`;
+        head = head.next;
+    }
+    output += ' )';
+    return output;
+}
+
 class SLLNode {
     constructor(value) {
         this.val = value;
@@ -5,11 +27,19 @@ class SLLNode {
     }
 }
 
+SLLNode.prototype.toString = function() {
+    return listToString(this, 'singly-linked', '->');
+};
+
 class DLLNode extends SLLNode {
     constructor(value) {
         super(value);
         this.prev = null;
     }
+}
+
+DLLNode.prototype.toString = function() {
+    return listToString(this, 'doubly-linked', '<->');
 }
 
 class LinkedList {
@@ -59,5 +89,15 @@ class LinkedList {
         return l1 === l2;
     }
 }
+
+expect.extend({
+    toEqualList(received, list) {
+        let areEqual = true;
+        return {
+            pass: areEqual,
+            message: `Expected ${received} to equal ${list}`
+        }
+    }
+});
 
 module.exports = LinkedList;

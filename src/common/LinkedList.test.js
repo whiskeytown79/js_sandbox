@@ -161,3 +161,23 @@ test('uneven lengths doubly-linked list inequality', () => {
     let l2 = LinkedList.makeDoublyLinkedList(v2);
     expect(LinkedList.areEqual(l1, l2)).toBe(false);
 });
+
+test('tostring singly-linked single value', () => {
+    let list = LinkedList.makeSinglyLinkedList([42]);
+    expect(list.toString()).toEqual("singly-linked list ( 42 )");
+});
+
+test('tostring doubly-linked single value', () => {
+    let list = LinkedList.makeDoublyLinkedList([42]);
+    expect(list.toString()).toEqual("doubly-linked list ( 42 )");
+});
+
+test('tostring singly-linked list', () => {
+    let list = LinkedList.makeSinglyLinkedList([1,2,3,4,5]);
+    expect(list.toString()).toEqual('singly-linked list ( 1 -> 2 -> 3 -> 4 -> 5 )');
+});
+
+test('tostring doubly-linked list', () => {
+    let list = LinkedList.makeDoublyLinkedList([1,2,3,4,5]);
+    expect(list.toString()).toEqual('doubly-linked list ( 1 <-> 2 <-> 3 <-> 4 <-> 5 )');
+});
