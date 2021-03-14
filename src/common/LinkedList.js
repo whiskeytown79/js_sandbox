@@ -92,7 +92,7 @@ class LinkedList {
 
 expect.extend({
     toEqualList(received, list) {
-        let areEqual = true;
+        let areEqual = LinkedList.areEqual(received, list);
         return {
             pass: areEqual,
             message: `Expected ${received} to equal ${list}`

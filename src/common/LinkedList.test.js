@@ -181,3 +181,15 @@ test('tostring doubly-linked list', () => {
     let list = LinkedList.makeDoublyLinkedList([1,2,3,4,5]);
     expect(list.toString()).toEqual('doubly-linked list ( 1 <-> 2 <-> 3 <-> 4 <-> 5 )');
 });
+
+test('toEqualList expect extension with equal lists', () => {
+    let l1 = LinkedList.makeSinglyLinkedList([1,2,3]);
+    let l2 = LinkedList.makeSinglyLinkedList([1,2,3]);
+    expect(l1).toEqualList(l2);
+});
+
+test('toEqualList expect extension with unequal lists', () => {
+    let l1 = LinkedList.makeSinglyLinkedList([1,2,3]);
+    let l2 = LinkedList.makeSinglyLinkedList([1,2,3,4]);
+    expect(l1).not.toEqualList(l2);
+});
