@@ -13,6 +13,10 @@ function listToString(head, listType, token) {
     let output = `${listType} list ( ${head.val}`;
     head = head.next;
     while (head) {
+        if (head === head.next) {
+            output += ' [Circular]';
+            break;
+        }
         output += ` ${token} ${head.val}`;
         head = head.next;
     }
