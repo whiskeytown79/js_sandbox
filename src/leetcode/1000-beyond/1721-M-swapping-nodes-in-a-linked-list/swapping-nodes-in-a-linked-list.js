@@ -1,4 +1,4 @@
-const LinkedList = require('../common/LinkedList');
+const LinkedList = require('../../common/LinkedList');
 
 /**
  * @param {ListNode} head

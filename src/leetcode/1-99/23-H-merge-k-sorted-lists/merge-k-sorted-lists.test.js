@@ -1,4 +1,4 @@
-const LinkedList = require('../common/LinkedList');
+const LinkedList = require('../../common/LinkedList');
 const mergeKLists = require('./merge-k-sorted-lists');
 
 function makeLists(arrays) {

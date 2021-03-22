@@ -2,7 +2,7 @@
   "name": "nodecli1",
   "version": "1.0.0",
   "description": "",
-  "main": "src/add-two-numbers/add-two-numbers.js",
+  "main": "src/leetcode/1-99/02-M-add-two-numbers/add-two-numbers.js",
   "scripts": {
     "test": "jest"
   },

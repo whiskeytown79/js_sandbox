@@ -1,17 +1,25 @@
 #!/bin/sh
 
-problem=$(echo "$1" | sed 's|https://leetcode.com/problems/||' | sed 's|/$||')
+num=$1
+diffic=$2
+problem=$(echo "$3" | sed 's|https://leetcode.com/problems/||' | sed 's|/$||')
 echo "Setting up: $problem"
 
-mkdir "src/$problem"
-echo "From https://leetcode.com/problems/$problem/" > src/$problem/README.md
-echo "" >> src/$problem/README.md
-echo "----" >> src/$problem/README.md
-echo "" >> src/$problem/README.md
-git add src/$problem/README.md
+ndir='1000-beyond'
+if [ $num -lt 1000 ]; then
+  ndir='100-999'
+  if [ $num -lt 100 ]; then
+    ndir='1-99';
+  fi
+fi
+pdir="src/leetcode/$ndir/$num-$diffic-$problem"
 
-echo "module.exports=TBD;" > src/$problem/$problem.js
-git add src/$problem/$problem.js
+mkdir $pdir
+echo "From https://leetcode.com/problems/$problem/" > $pdir/README.md
+#git add $pdir/README.md
 
-echo "const TBD = require('./$problem');" > src/$problem/$problem.test.js
-git add src/$problem/$problem.test.js
+echo "module.exports=TBD;" > $pdir/$problem.js
+#git add $pdir/$problem.js
+
+echo "const TBD = require('./$problem');" > $pdir/$problem.test.js
+#git add $pdir/$problem.test.js

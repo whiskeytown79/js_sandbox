@@ -1,4 +1,4 @@
-const LinkedList = require('../common/LinkedList');
+const LinkedList = require('../../common/LinkedList');
 const removeNthFromEnd = require('./remove-nth-node-from-end-of-list');
 
 test('leetcode example 1', () => {

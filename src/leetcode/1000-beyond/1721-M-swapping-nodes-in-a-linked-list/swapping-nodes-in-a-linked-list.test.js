@@ -1,4 +1,4 @@
-const LinkedList = require('../common/LinkedList');
+const LinkedList = require('../../common/LinkedList');
 const swapNodes = require('./swapping-nodes-in-a-linked-list');
 
 test('leetcode example 1', () => {
