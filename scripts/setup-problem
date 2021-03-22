@@ -16,10 +16,10 @@ pdir="src/leetcode/$ndir/$num-$diffic-$problem"
 
 mkdir $pdir
 echo "From https://leetcode.com/problems/$problem/" > $pdir/README.md
-#git add $pdir/README.md
+git add $pdir/README.md
 
 echo "module.exports=TBD;" > $pdir/$problem.js
-#git add $pdir/$problem.js
+git add $pdir/$problem.js
 
 echo "const TBD = require('./$problem');" > $pdir/$problem.test.js
-#git add $pdir/$problem.test.js
+git add $pdir/$problem.test.js

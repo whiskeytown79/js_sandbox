@@ -1,25 +1,29 @@
+function ListNode(val, next) {
+    this.val = val;
+    this.next = next;
+}
+
 /**
  * @param {ListNode} head
  * @param {number} n
  * @return {ListNode}
  */
 function removeNthFromEnd(head, n) {
-    if (head.next === null) {
+    if (!head.next) {
         return null;
     }
-    let hash = {};
-    let idx = 0;
-    while (head) {
-        hash[idx] = head;
-        head = head.next;
-        idx++;
+    let preHead = new ListNode(-1, head);
+    let preNode = preHead;
+    let x = head;
+    while (--n) {
+        x = x.next;
     }
-    let target = idx - n;
-    if (target === 0) {
-        return hash[1];
+    while (x.next != null) {
+        x = x.next;
+        preNode = preNode.next;
     }
-    hash[target - 1].next = hash[target].next;
-    return hash[0];
+    preNode.next = preNode.next.next;
+    return preHead.next;
 }
 
 module.exports=removeNthFromEnd;
