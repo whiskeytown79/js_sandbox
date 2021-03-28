@@ -1,11 +1,11 @@
-const makeTree = require('./maketree');
+const BinaryTree = require('./BinaryTree');
 
 test('empty input gives undefined tree root', () => {
-    expect(makeTree([])).toBeUndefined();
+    expect(BinaryTree.fromArray([])).toBeUndefined();
 });
 
 test('single value input gives single tree node with no children', () => {
-    let tree = makeTree([42]);
+    let tree = BinaryTree.fromArray([42]);
     expect(tree).toBeDefined();
     expect(tree.val).toBe(42);
     expect(tree.left).toBeNull();
@@ -13,7 +13,7 @@ test('single value input gives single tree node with no children', () => {
 });
 
 test('simple three element tree', () => {
-    let tree = makeTree([1, 2, 3]);
+    let tree = BinaryTree.fromArray([1, 2, 3]);
     expect(tree).toBeDefined();
     expect(tree.val).toBe(1);
     expect(tree.left).toBeDefined();
@@ -35,7 +35,7 @@ test('simple three element tree', () => {
              4   5
  */
 test('tree with depth 2 and two null elements', () => {
-    let tree = makeTree([1,2,3,null,4,null,5]);
+    let tree = BinaryTree.fromArray([1,2,3,null,4,null,5]);
     expect(tree).toBeDefined();
     expect(tree.val).toBe(1);
     expect(tree.left).toBeDefined();
@@ -51,7 +51,7 @@ test('tree with depth 2 and two null elements', () => {
 });
 
 test('just left subtree exists', () => {
-    let tree = makeTree([1, 2, null, 3, 4]);
+    let tree = BinaryTree.fromArray([1, 2, null, 3, 4]);
     expect(tree).toBeDefined();
     expect(tree.left).toBeDefined();
     expect(tree.right).toBeNull();
@@ -60,7 +60,7 @@ test('just left subtree exists', () => {
 });
 
 test('just right subtree exists', () => {
-    let tree = makeTree([1, null, 2, null, null, 3, 4]);
+    let tree = BinaryTree.fromArray([1, null, 2, null, null, 3, 4]);
     expect(tree).toBeDefined();
     expect(tree.left).toBeNull();
     expect(tree.right).toBeDefined();

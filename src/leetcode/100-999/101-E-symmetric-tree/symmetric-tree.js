@@ -1,9 +1,3 @@
-const TreeNode = require('./treenode');
-
-/**
- * @param {TreeNode} root
- * @return {boolean}
- */
 function isSymmetric(root) {
     if (!root.left && !root.right) {
         return true;
