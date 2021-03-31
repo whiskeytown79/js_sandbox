@@ -10,10 +10,16 @@
  * If we can convert this entirely to addition, we can rely on the fact that addition is associative
  * to more easily handle parentheses. We thus convert all subtractions (including unary - for
  * negative numbers) into addition, by means of a sign bit that we will invert every time we come
- * across a - token in the expression.
+ * across a - token in the expression. For example:
  *
- * Parentheses are handled by using a stack to push a new working total and sign bit, then popping
- * them off and adding that running total to the previous stack frame.
+ *   4 + 9 - 3 + -1 - -8   =>   4 + 9 + (-3) + (-1) + (-(-8))
+ *
+ * Which equals 17. In this example, parentheses are simply used to show how the sign bit is used to
+ * invert the value being added (sometimes more than once).
+ *
+ * Parentheses in the actual input expression are handled by using a stack to push a new working
+ * total and sign bit, then popping them off when the parenthesis is closed and adding that running
+ * total to the previous stack frame.
  *
  * @param {string} s
  * @return {number}
