@@ -3,13 +3,18 @@
  * as well as unary - for negative numbers. Parentheses are supported. The input is expected
  * to be a valid expression (leetcode guarantees this).
  *
- * This approach uses the fact that + and - have the same precedence and are associative. This
- * allows evaluating numbers and operations by flipping a "sign" bit every time we see a
- * - character, and then always performing addition (modified by the sign bit) when we see a number.
+ * This approach uses the fact that subtraction is the same as adding a negative:
+ *
+ *    a - b = a + (-b)
+ *
+ * If we can convert this entirely to addition, we can rely on the fact that addition is associative
+ * to more easily handle parentheses. We thus convert all subtractions (including unary - for
+ * negative numbers) into addition, by means of a sign bit that we will invert every time we come
+ * across a - token in the expression.
  *
  * Parentheses are handled by using a stack to push a new working total and sign bit, then popping
  * them off and adding that running total to the previous stack frame.
- * 
+ *
  * @param {string} s
  * @return {number}
  */
