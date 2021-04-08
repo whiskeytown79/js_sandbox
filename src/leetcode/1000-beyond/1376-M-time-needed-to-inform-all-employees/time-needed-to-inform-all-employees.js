@@ -1,12 +1,3 @@
-function dfs(adjacency, currIdx, visit) {
-    let node = adjacency[currIdx];
-    let values = [];
-    for (let i=0; i<node.length; i++) {
-        values.push(dfs(adjacency, node[i], visit));
-    }
-    return visit(currIdx, values);
-}
-
 /**
  * @param {number} n
  * @param {number} headID
@@ -15,21 +6,24 @@ function dfs(adjacency, currIdx, visit) {
  * @return {number}
  */
 function numOfMinutes(n, headID, manager, informTime) {
-    if (manager.length === 1) {
-        return informTime[0];
-    }
-    let reports = Array.from({length: manager.length}, () => []);
-    for (let i=0; i<manager.length; i++) {
-        if (manager[i] === -1) continue;
-        reports[manager[i]].push(i);
-    }
-    return dfs(reports, headID, (currIdx, vals) => {
-        let result = informTime[currIdx];
-        if (vals.length > 0) {
-            result += Math.max(...vals);
+    // Subroutine to calculate the time to inform from the root (owner) down to
+    // the current person. Calculates by doing DFS upwards towards the root, but
+    // caches the values in the informTime[] array and resets the manager to -1 so
+    // we don't process those nodes again.
+    let timeToRoot = (id) => {
+        if (manager[id] !== -1) {
+            informTime[id] += timeToRoot(manager[id]);
+            manager[id] = -1;
         }
-        return result;
-    });
+        return informTime[id];
+    };
+
+    // Go through each person and set the inform time from that person to the
+    // root of the tree (the owner).
+    manager.forEach((_, id) => timeToRoot(id));
+
+    // Return the max of the inform times we calculated
+    return Math.max(...informTime);
 }
 
 module.exports=numOfMinutes;
