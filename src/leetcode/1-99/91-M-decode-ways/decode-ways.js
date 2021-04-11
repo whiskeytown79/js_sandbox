@@ -4,24 +4,20 @@ let cache = {};
  * @return {number}
  */
 function numDecodings(s) {
-    if (!cache[s]) {
+    if (cache[s] === undefined) {
         let result = 0;
-        if (s.length > 0 && s[0] !== '0') {
+        if (s.length === 0) {
+            result = 1;
+        } else if (s[0] === '0') {
+            result = 0;
+        } else {
             if (s.length >= 2) {
-                if (s[0] === '1' || (s[0] === '2' && +s[1] <= 6)) {
-                    // 2 digit token is possible
-                    if (s.length === 2) {
-                        result = s[1] === '0'? 1 : 2;
-                    } else {
-                        result = numDecodings(s.substr(1)) + numDecodings(s.substr(2));
-                    }
-                } else {
-                    // only 1-digit tokens possible
-                    result = numDecodings(s.substr(1));
+                let two = Number(s.slice(0, 2));
+                if (two >= 10 && two <= 26) {
+                    result += numDecodings(s.substr(2));
                 }
-            } else {
-                result = 1;
             }
+            result += numDecodings(s.substr(1));
         }
         cache[s] = result;
     }
