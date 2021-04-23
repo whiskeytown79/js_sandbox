@@ -50,15 +50,16 @@ class LinkedList {
     /**
      * Makes a new singly-linked instance using the passed-in aray of values.
      * @param {[]} values
+     * @param {function(any):any} nodeFactory
      */
-    static makeSinglyLinkedList(values) {
+    static makeSinglyLinkedList(values, nodeFactory = (v) => new SLLNode(v)) {
         if (!values || values.length === 0) {
             return null;
         }
-        let head = new SLLNode(values[0]);
+        let head = nodeFactory(values[0]);
         let node = head;
         for (let i=1; i<values.length; i++) {
-            let newNode = new SLLNode(values[i]);
+            let newNode = nodeFactory(values[i]);
             node.next = newNode;
             node = newNode;
         }
@@ -68,15 +69,16 @@ class LinkedList {
     /**
      * Makes a new doubly-linked list instance using the passed-in aray of values.
      * @param {[]} values
+     * @param {function(any):any} nodeFactory
      */
-    static makeDoublyLinkedList(values) {
+    static makeDoublyLinkedList(values, nodeFactory = (v) => new DLLNode(v)) {
         if (!values || values.length === 0) {
             return null;
         }
-        let head = new DLLNode(values[0]);
+        let head = nodeFactory(values[0]);
         let node = head;
         for (let i=1; i<values.length; i++) {
-            let newNode = new DLLNode(values[i]);
+            let newNode = nodeFactory(values[i]);
             newNode.prev = node;
             node.next = newNode;
             node = newNode;
