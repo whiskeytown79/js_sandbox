@@ -3,12 +3,11 @@
  *
  * -1 is a wall
  * 0 is a gate
- * 3^32 - 1 is an empty room
+ * 2^32 - 1 is an empty room
  *
  * @param {number[][]} rooms M x N 2d grid
  */
 function wallsAndGates(rooms) {
-    const INF = 2147483647;
     let queue = [];
     for (let i=0; i<rooms.length; i++) {
         for (let j=0; j<rooms[i].length; j++) {
